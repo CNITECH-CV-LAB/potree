@@ -1,6 +1,5 @@
-<!DOCTYPE html>gleSidebar
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="">
@@ -10,131 +9,9 @@
 
 	<link rel="stylesheet" type="text/css" href="../../build/potree/potree.css">
 	<link rel="stylesheet" type="text/css" href="../../libs/jquery-ui/jquery-ui.min.css">
-	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../libs/openlayers3/ol.css">
 	<link rel="stylesheet" type="text/css" href="../../libs/spectrum/spectrum.css">
 	<link rel="stylesheet" type="text/css" href="../../libs/jstree/themes/mixed/style.css">
-	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.4/css/all.css" rel="stylesheet">
-	<style>
-		/* .potree_container {
-			z-index: -1000;
-		} */
-
-		.subMenuTitleDiv i {
-			position: absolute;
-			right: 30px;
-			top: 28px;
-		}
-
-		.subMenuTitleDiv {
-			width: 100%;
-			height: 77px;
-			font-size: 24px;
-			margin: 20px;
-		}
-
-		#mainContainer {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			z-index: -1000;
-		}
-
-		.menu-left {
-			/* 菜单主体，默认宽度为10px,定位于屏幕左侧中间，不随页面滚动变化位置 */
-			width: 60px;
-			height: 1200px;
-			position: fixed;
-			left: 0px;
-			top: 50%;
-			transform: translate(0%, -50%);
-			background-color: rgba(248, 248, 255, 0);
-			overflow: hidden;
-			transition: 0.3s linear;
-			z-index: 999;
-		}
-
-		.menu-left.show {
-			background: #304c64;
-		}
-
-		.menu-left li a {
-			/* 展开后超级链接字体为白色 */
-			color: white;
-			transition: 0.1s linear 0.1s;
-			text-decoration: none;
-		}
-
-		.menu-left li {
-			/* 每条list占10%的高度,定位于菜单条中间 */
-			position: absolute;
-			top: var(--l);
-			width: 100%;
-			height: 60%;
-			font-size: 30px;
-			height: 60px;
-			box-sizing: border-box;
-			justify-content: center;
-			display: flex;
-			align-items: center;
-		}
-
-		/* 中间部分蓝色底色，圆角效果 */
-		.menu-left li:hover {
-			width: 60px;
-			height: 60px;
-			background: #1e90ff;
-			border-radius: 20px;
-		}
-
-		.menu-left li.show {
-			background: #1e90ff;
-			border-radius: 20px;
-		}
-
-		.menu-left li a:hover {
-			text-decoration: underline;
-		}
-
-		.menu-left li a:active {
-			color: rgb(158, 48, 149);
-		}
-
-		.menu-left li a:active .menu-left-sub {
-			color: rgb(158, 48, 149);
-		}
-
-		.menu-left-sub {
-			background-color: #f1f1f1;
-			width: 300px;
-			height: 1200px;
-			position: fixed;
-			top: 0;
-			left: -300px;
-			/* transition: 0.4s linear; */
-			transition: left 0.3s ease-in-out;
-			z-index: 999;
-			overflow-y: auto;
-		}
-
-		.menu-left-sub.show {
-			left: 60px;
-		}
-
-		.menu-left-sub i:hover {
-			cursor: pointer;
-		}
-
-		#potree_sidebar_container {
-			left: 600px;
-			/* z-index: 22; */
-		}
-
-		img.icon_size {
-			height: 38px;
-			position: relative;
-		}
-	</style>
 </head>
 
 <body>
@@ -150,192 +27,21 @@
 	<script src="../../libs/jstree/jstree.js"></script>
 	<script src="../../build/potree/potree.js"></script>
 	<script src="../../libs/plasio/js/laslaz.js"></script>
-	<script src="./proj4.js"></script>
-
-
+	
+	
 	<div class="potree_container" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; ">
-		<div id="potree_render_area"
-			style="background-image: url('../../build/potree/resources/images/background.jpg')">
-
+		<div id="potree_render_area" style="background-image: url('../../build/potree/resources/images/background.jpg');">
+		
 		</div>
 		<div id="potree_sidebar_container"> </div>
-		<!-- ----------------------新增------------------------ -->
-		<div class="menu-left">
-			<li style="--l:20%" onclick="showSubMenu(0)" title="调试外观"><a href="#"><img class="icon_size"
-						src="../static/icon/art.png" alt="Image"></a>
-			</li>
-			<li style="--l:28%" onclick="showSubMenu(1)" title="工具箱"><a href="#"><img class="icon_size"
-						src="../static/icon/tool.png" alt="Image"></a>
-			</li>
-			<li style="--l:36%" onclick="showSubMenu(2)" title="查看场景"><a href="#"><img class="icon_size"
-						src="../static/icon/eyes.png" alt="Image"></a>
-			</li>
-			<li style="--l:44%" onclick="showSubMenu(3)" title="过滤器"><a href="#"><img class="icon_size"
-						src="../static/icon/ruler.png" alt="Image"></a>
-			</li>
-			<li style="--l:52%" onclick="showSubMenu(4)" title="关于我们"><a href="#"><img class="icon_size"
-						src="../static/icon/aboutus.png" alt="Image"></a></li>
-		</div>
-		<div class="menu-left-sub" id="menu-left-sub_0">
-			<div class="subMenuTitleDiv">
-				调试外观
-				<i class="fas fa-chevron-left" onclick="backSubMenu(0)"></i>
-			</div>
-		</div>
-		<div class="menu-left-sub" id="menu-left-sub_1">
-			<div class="subMenuTitleDiv">
-				工具箱
-				<i class="fas fa-chevron-left" onclick="backSubMenu(1)"></i>
-			</div>
-		</div>
-		<div class="menu-left-sub" id="menu-left-sub_2">
-			<div class="subMenuTitleDiv">
-				查看场景
-				<i class="fas fa-chevron-left" onclick="backSubMenu(2)"></i>
-			</div>
-			<fieldset>
-				<legend>点云与全景图切换</legend>
-
-				<div>
-					<input type="checkbox" id="scales" name="scales" onclick="opencludes()" checked />
-					<label for="scales">点云</label>
-				</div>
-
-				<div>
-					<input type="checkbox" id="horns" name="horns" onclick="open360images()" />
-					<label for="horns">全景图</label>
-				</div>
-			</fieldset>
-
-		</div>
-		<div class="menu-left-sub" id="menu-left-sub_3">
-			<div class="subMenuTitleDiv">
-				过滤器
-				<i class="fas fa-chevron-left" onclick="backSubMenu(3)"></i>
-			</div>
-		</div>
-		<div class="menu-left-sub" id="menu-left-sub_4">
-			<div class="subMenuTitleDiv">
-				关于我们
-				<i class="fas fa-chevron-left" onclick="backSubMenu(4)"></i>
-			</div>
-		</div>
-		<!-- ----------------------新增------------------------ -->
 	</div>
-	<script>
-		window.onload = function () {
-			$('#menu_tools').next().show();
-			$('#menu_scene').next().show();
-			$('#menu_filters').next().show();
-			$('#menu_about').next().show();
-			$('#potree_quick_buttons').find("img:nth-child(1)").hide()
-			$('#menu_appearance').next().appendTo('#menu-left-sub_0');
-			$('#menu_tools').next().appendTo('#menu-left-sub_1');
-			$('#menu_scene').next().appendTo('#menu-left-sub_2');
-			$('#menu_filters').next().appendTo('#menu-left-sub_3');
-			$('#menu_about').next().appendTo('#menu-left-sub_4');
-			$('#potree_quick_buttons').css('left', '360px');
-			setTimeout(function () {
-				var checkboxes = document.getElementById("images");
-				var linkElements = checkboxes.getElementsByTagName("a");
-				var secondLink = linkElements[1];
-				var inside_i = secondLink.getElementsByTagName("i");
-				var first_i = inside_i[0];
-				first_i.click();
-			}
-				, 100)
-
-		}
-
-
-		data = {
-			subMenuShowFlag: false, // 用于判断当前二级菜单是否打开
-			currentMenuID: -1, // 当前选中的菜单ID,用于二级菜单的展开与收回,以及退出二级菜单
-			menuNameList: ['Appearance', 'Tools', 'Scene', 'Filters', 'About'], // 菜单名字,用于二级菜单填充对应内容
-		};
-
-		// 二级菜单的展开与收回函数 add by ymh 2023.07.07
-		function showSubMenu(li_id) {
-			// 如果当前二级菜单已经打开，那么就不要关闭它
-			if (data.subMenuShowFlag) {
-				// 如果点击的li_id和当前的li_id不同，那么关闭当前show，并打开新的show
-				if (li_id != data.currentMenuID) {
-					var x = parseInt(li_id);
-					var y = parseInt(data.currentMenuID);
-					$('#menu-left-sub_' + x).css("left", "60px");
-					$('#menu-left-sub_' + y).css("left", "-300px");
-					$('#menu-left-sub_' + x).children('div:eq(1)').show();
-					data.currentMenuID = li_id;
-
-				}
-				$('.menu-left').css("background-color", "rgba(248, 248, 255, 0.8)");
-			}
-			else {
-				data.subMenuShowFlag = true;
-				data.currentMenuID = li_id;
-				var a = parseInt(li_id);
-				$('#menu-left-sub_' + a).css("left", "60px");
-				$('#menu-left-sub_' + a).children('div:eq(1)').show();
-				$('.menu-left').css("background-color", "rgba(248, 248, 255, 0.8)");
-			}
-		}
-
-
-
-		// 退出二级菜单 add by ymh 2023.07.10
-		function backSubMenu(ids) {
-
-			$('#menu-left-sub_' + ids).css("left", "-300px");
-			data.subMenuShowFlag = false;
-			data.currentMenuID = -1;
-			$('.menu-left').css("background-color", "rgba(248, 248, 255, 0)");
-		}
-		function opencludes() {
-			var checkboxes = document.getElementById("pointclouds");
-			var linkElements = checkboxes.getElementsByTagName("a");
-			var secondLink = linkElements[1];
-			var inside_i = secondLink.getElementsByTagName("i");
-			var first_i = inside_i[0];
-			if (document.getElementById("scales").checked) {
-				first_i.click();
-				if (document.getElementById("horns").checked) {
-					var checkboxes = document.getElementById("images");
-					var linkElements = checkboxes.getElementsByTagName("a");
-					var secondLink = linkElements[1];
-					var inside_i = secondLink.getElementsByTagName("i");
-					var first_i = inside_i[0];
-					first_i.click();
-					document.getElementById("horns").checked = false;
-				}
-
-			}
-			else {
-				first_i.click();
-
-			}
-		}
-		function open360images() {
-			var checkboxes = document.getElementById("images");
-			var linkElements = checkboxes.getElementsByTagName("a");
-			var secondLink = linkElements[1];
-			var inside_i = secondLink.getElementsByTagName("i");
-			var first_i = inside_i[0];
-			if (document.getElementById("horns").checked) {
-				first_i.click();
-
-			}
-			else {
-				first_i.click();
-			}
-		}
-
-	</script>
+	
 	<script type="module">
 
-		import * as THREE from "../libs/three.js/build/three.module.js";
-
+	import * as THREE from "../libs/three.js/build/three.module.js";
+	
 		window.viewer = new Potree.Viewer(document.getElementById("potree_render_area"));
-
+		
 		viewer.setEDLEnabled(true);
 		viewer.setFOV(60);
 		viewer.setPointBudget(2_000_000);
@@ -343,32 +49,36 @@
 		viewer.setDescription(`Mobile LIDAR with 360 degree image overlays. 
 		Click on a sphere to enter 360 view. Click "unfocus" to leave 360 view. <br>
 		Point cloud courtesy of <a href="http://www.helimap.com/">Helimap System SA</a>. Images were downsized for this online demo; Original size is 8000x400.`);
-
+		
 		viewer.loadGUI(() => {
 			viewer.setLanguage('en');
-			$("#menu_appearance").next().show();//原始菜单弹出
+			$("#menu_appearance").next().show();
 			viewer.toggleSidebar();
 		});
-
-		// Load and add point cloud to scene加载点云数据。
-		Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/helimap/360/MLS_drive1/cloud.js", "l", e => {
+		
+		// Load and add point cloud to scene
+		Potree.loadPointCloud("http://5.9.65.151/mschuetz/potree/resources/pointclouds/helimap/360/MLS_drive1/cloud.js", "MLS", e => {
 			let scene = viewer.scene;
 			let pointcloud = e.pointcloud;
-
+			
 			let material = pointcloud.material;
 			material.size = 0.5;
 			material.minSize = 2.0;
 			material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
 			material.shape = Potree.PointShape.SQUARE;
 			material.activeAttributeName = "rgba";
-
+			
 			scene.addPointCloud(pointcloud);
 
-			viewer.fitToScreen();
+			viewer.scene.view.setView(
+				[2652381.103, 1249049.447, 411.636],
+				[2652364.407, 1249077.205, 399.696],
+			);
+
 			run();
 		});
 
-		async function run() {
+		async function run(){
 
 			proj4.defs("WGS84", "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs");
 			proj4.defs("pointcloud", viewer.getProjection());
@@ -380,7 +90,7 @@
 
 			// this file contains coordinates, orientation and filenames of the images:
 			// http://5.9.65.151/mschuetz/potree/resources/pointclouds/helimap/360/Drive2_selection/coordinates.txt
-			Potree.Images360Loader.load("http://5.9.65.151/mschuetz/potree/resources/pointclouds/helimap/360/Drive2_selection", viewer, params).then(images => {
+			Potree.Images360Loader.load("http://5.9.65.151/mschuetz/potree/resources/pointclouds/helimap/360/Drive2_selection", viewer, params).then( images => {
 				viewer.scene.add360Images(images);
 			});
 
@@ -388,10 +98,9 @@
 		}
 
 
-
+		
 	</script>
-
-
-</body>
-
+	
+	
+  </body>
 </html>
